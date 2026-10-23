@@ -1,0 +1,6 @@
+{
+  "name": "Better Deals - Smart Links, Better Deals",
+  "description": "Better Deals is a premium affiliate marketing platform featuring curated discounts, product videos, and direct affiliate purchase links.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,288 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Affiliate product listing with pricing, image gallery, video link, and validated affiliate URL",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Product display name",
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "description": "Product detailed description",
+          "maxLength": 5000
+        },
+        "categoryId": {
+          "type": "string",
+          "description": "Category document ID",
+          "maxLength": 100
+        },
+        "price": {
+          "type": "number",
+          "description": "Special discounted deal price in INR"
+        },
+        "originalPrice": {
+          "type": "number",
+          "description": "M.R.P. or original retail price"
+        },
+        "discount": {
+          "type": "number",
+          "description": "Discount percentage integer 0-100"
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "description": "Primary display image URL",
+          "maxLength": 2000
+        },
+        "imageUrls": {
+          "type": "array",
+          "description": "Array of product image URLs"
+        },
+        "videoIds": {
+          "type": "array",
+          "description": "Array of related video IDs"
+        },
+        "affiliateUrl": {
+          "type": "string",
+          "description": "Target store affiliate URL",
+          "maxLength": 2000
+        },
+        "affiliatePlatform": {
+          "type": "string",
+          "description": "Name of affiliate platform like Amazon or Flipkart",
+          "maxLength": 50
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Flag to display on homepage featured section"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "published"],
+          "description": "Publication status"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update"
+        }
+      },
+      "required": ["name", "categoryId", "price", "affiliateUrl", "affiliatePlatform", "status"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Product classification category",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Category name in English / Gujarati",
+          "maxLength": 100
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL slug identifier",
+          "maxLength": 100
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon identifier or emoji",
+          "maxLength": 50
+        },
+        "displayOrder": {
+          "type": "number",
+          "description": "Display order integer"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "inactive"],
+          "description": "Category status"
+        }
+      },
+      "required": ["name", "slug", "displayOrder", "status"]
+    },
+    "Video": {
+      "title": "Video",
+      "description": "Promotional product video or short demo",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Promotional video title",
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "description": "Video summary or notes",
+          "maxLength": 1000
+        },
+        "storagePath": {
+          "type": "string",
+          "description": "Storage path if uploaded file",
+          "maxLength": 500
+        },
+        "videoUrl": {
+          "type": "string",
+          "description": "Direct video URL or YouTube embed URL",
+          "maxLength": 2000
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "description": "Thumbnail preview image URL",
+          "maxLength": 2000
+        },
+        "productId": {
+          "type": "string",
+          "description": "Linked product ID if any",
+          "maxLength": 100
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "published"],
+          "description": "Publication status"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of upload"
+        }
+      },
+      "required": ["title", "videoUrl", "status"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Authorized administrator profile",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "Admin Google email address",
+          "maxLength": 200
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "superadmin"],
+          "description": "Role level"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Whether active"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of creation"
+        }
+      },
+      "required": ["uid", "email", "role", "active"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Global website configuration and disclosures",
+      "type": "object",
+      "properties": {
+        "siteName": {
+          "type": "string",
+          "description": "Site brand name",
+          "maxLength": 100
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Site tagline",
+          "maxLength": 200
+        },
+        "bannerHeadline": {
+          "type": "string",
+          "description": "Hero banner headline",
+          "maxLength": 200
+        },
+        "bannerSubheadline": {
+          "type": "string",
+          "description": "Hero banner subtitle",
+          "maxLength": 300
+        },
+        "bannerImageUrl": {
+          "type": "string",
+          "description": "Banner background or featured deal image URL",
+          "maxLength": 2000
+        },
+        "bannerLink": {
+          "type": "string",
+          "description": "Banner action link",
+          "maxLength": 1000
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency symbol",
+          "maxLength": 10
+        },
+        "affiliateDisclosure": {
+          "type": "string",
+          "description": "Legal affiliate disclaimer notice",
+          "maxLength": 2000
+        },
+        "contactEmail": {
+          "type": "string",
+          "description": "Contact support email",
+          "maxLength": 150
+        },
+        "contactPhone": {
+          "type": "string",
+          "description": "Contact support phone",
+          "maxLength": 50
+        },
+        "instagramUrl": {
+          "type": "string",
+          "description": "Instagram page URL",
+          "maxLength": 500
+        },
+        "telegramUrl": {
+          "type": "string",
+          "description": "Telegram channel URL",
+          "maxLength": 500
+        },
+        "whatsappUrl": {
+          "type": "string",
+          "description": "WhatsApp channel or group link",
+          "maxLength": 500
+        },
+        "youtubeUrl": {
+          "type": "string",
+          "description": "YouTube channel link",
+          "maxLength": 500
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Affiliate product deals catalog"
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Product categories"
+    },
+    "/videos/{videoId}": {
+      "schema": "Video",
+      "description": "Promotional product video showcase"
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "List of authorized administrators"
+    },
+    "/settings/{settingId}": {
+      "schema": "Settings",
+      "description": "Global website configurations"
+    }
+  }
+}
